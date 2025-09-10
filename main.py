@@ -37,29 +37,28 @@ def parse_experience(tokens):
             experience_tokens = tokens[i+1:]
             break
 
-
+    experience_tokens = [item for item in experience_tokens if item != ""]
 
     temp_experience_holder = ""
     experience_points = ""
     # parse points inside each experience section
-    for i in experience_tokens:
+    for i in range(len(experience_tokens)):
+        if len(experience_tokens[i]) < 80:
+            temp_experience_holder += experience_tokens[i]
 
-        if len(i)<80:
-            temp_experience_holder += " " +  i
         else:
-            experience_points += i
-            temp_experience_holder = ""
-            experience_details[temp_experience_holder] = experience_points
+            experience_points += experience_tokens[i]
+
+            if i+1 != len(experience_tokens) and len(experience_tokens[i+1]) > 80:
+                experience_details[temp_experience_holder] = experience_points
+                temp_experience_holder = ""
 
 
-    print(experience_details)
-
-
-
-    pass
 
 # Example usage
 if __name__ == "__main__":
-    resume_file = "./Nishedh-Resume.docx"  # replace with your file
+    resume_file = "./Nishedh-Resume.docx"
+    # replace with your file
     parse_resume(resume_file)
+    print(general_details)
 
