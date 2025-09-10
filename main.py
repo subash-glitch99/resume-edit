@@ -1,5 +1,7 @@
 import re
 from docx import Document
+import external.OpenAIClient
+from external import OpenAIClient
 
 general_details = {}
 experience_details = {}
@@ -54,11 +56,16 @@ def parse_experience(tokens):
                 temp_experience_holder = ""
 
 
-
 # Example usage
 if __name__ == "__main__":
     resume_file = "./Nishedh-Resume.docx"
     # replace with your file
     parse_resume(resume_file)
+
     print(general_details)
+    print(experience_details)
+
+
+
+
 
